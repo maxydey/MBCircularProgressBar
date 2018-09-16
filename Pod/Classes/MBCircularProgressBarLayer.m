@@ -38,6 +38,7 @@
 @dynamic showValueString;
 @dynamic textOffset;
 @dynamic countdown;
+@dynamic isLine;
 
 static CGFloat _margin = 10;
 
@@ -81,7 +82,7 @@ static CGFloat _margin = 10;
         radius = radius - self.emptyLineWidth/2.f;
     }
     
-    if (_isLine) {
+    if (self.isLine) {
         CGRect myRect = CGRectMake(_margin, rect.size.height - self.progressLineWidth - _margin, rect.size.width - _margin * 2, self.progressLineWidth);
         UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:myRect cornerRadius: self.progressLineWidth / 2];
         CGContextAddPath(c, path.CGPath);
@@ -130,7 +131,7 @@ static CGFloat _margin = 10;
         radius = radius - self.emptyLineWidth - self.progressLineWidth/2.f;
     }
     
-    if (_isLine) {
+    if (self.isLine) {
         if (self.value == 0) {
             return;
         }
