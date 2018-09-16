@@ -16,6 +16,11 @@ IB_DESIGNABLE
 @interface MBCircularProgressBarView : UIView
 
 /**
+ * Should show value string
+ */
+@property (nonatomic,assign) IBInspectable BOOL      isLine;
+
+/**
  * Should show value string 
  */
 @property (nonatomic,assign) IBInspectable BOOL      showValueString;

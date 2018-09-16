@@ -39,6 +39,8 @@
 @dynamic textOffset;
 @dynamic countdown;
 
+static CGFloat _margin = 10;
+
 #pragma mark - Drawing
 
 //-(void)setValue:(CGFloat)value{
@@ -79,29 +81,41 @@
         radius = radius - self.emptyLineWidth/2.f;
     }
     
-    CGMutablePathRef arc = CGPathCreateMutable();
-    CGPathAddArc(arc, NULL,
-                 center.x, center.y, radius,
-                 (self.progressAngle/100.f)*M_PI-((-self.progressRotationAngle/100.f)*2.f+0.5)*M_PI,
-                 -(self.progressAngle/100.f)*M_PI-((-self.progressRotationAngle/100.f)*2.f+0.5)*M_PI,
-                 YES);
-    
-
-    CGPathRef strokedArc =
-    CGPathCreateCopyByStrokingPath(arc, NULL,
-                                   self.emptyLineWidth,
-                                   (CGLineCap)self.emptyCapType,
-                                   kCGLineJoinMiter,
-                                   10);
-    
-    
-    CGContextAddPath(c, strokedArc);
-    CGContextSetStrokeColorWithColor(c, self.emptyLineStrokeColor.CGColor);
-    CGContextSetFillColorWithColor(c, self.emptyLineColor.CGColor);
-    CGContextDrawPath(c, kCGPathFillStroke);
-    
-    CGPathRelease(arc);
-    CGPathRelease(strokedArc);
+    if (_isLine) {
+        CGMutablePathRef rectPath = CGPathCreateMutable();
+        CGRect myRect = CGRectMake(_margin, rect.size.height - self.progressLineWidth - _margin, rect.size.width - _margin * 2, self.progressLineWidth);
+        CGPathAddRoundedRect(rectPath, NULL, myRect, self.progressLineWidth / 2, self.progressLineWidth / 2);
+        CGContextAddPath(c, rectPath);
+        CGContextSetStrokeColorWithColor(c, self.emptyLineStrokeColor.CGColor);
+        CGContextSetFillColorWithColor(c, self.emptyLineColor.CGColor);
+        CGContextDrawPath(c, kCGPathFillStroke);
+        
+        CGPathRelease(rectPath);
+    } else {
+        CGMutablePathRef arc = CGPathCreateMutable();
+        CGPathAddArc(arc, NULL,
+                     center.x, center.y, radius,
+                     (self.progressAngle/100.f)*M_PI-((-self.progressRotationAngle/100.f)*2.f+0.5)*M_PI,
+                     -(self.progressAngle/100.f)*M_PI-((-self.progressRotationAngle/100.f)*2.f+0.5)*M_PI,
+                     YES);
+        
+        
+        CGPathRef strokedArc =
+        CGPathCreateCopyByStrokingPath(arc, NULL,
+                                       self.emptyLineWidth,
+                                       (CGLineCap)self.emptyCapType,
+                                       kCGLineJoinMiter,
+                                       10);
+        
+        
+        CGContextAddPath(c, strokedArc);
+        CGContextSetStrokeColorWithColor(c, self.emptyLineStrokeColor.CGColor);
+        CGContextSetFillColorWithColor(c, self.emptyLineColor.CGColor);
+        CGContextDrawPath(c, kCGPathFillStroke);
+        
+        CGPathRelease(arc);
+        CGPathRelease(strokedArc);
+    }
 }
 
 - (void)drawProgressBar:(CGRect)rect context:(CGContextRef)c{
@@ -119,28 +133,41 @@
         radius = radius - self.emptyLineWidth - self.progressLineWidth/2.f;
     }
     
-    CGMutablePathRef arc = CGPathCreateMutable();
-    CGPathAddArc(arc, NULL,
-                 center.x, center.y, radius,
-                 (self.progressAngle/100.f)*M_PI-((-self.progressRotationAngle/100.f)*2.f+0.5)*M_PI-(2.f*M_PI)*(self.progressAngle/100.f)*(100.f-100.f*self.value/self.maxValue)/100.f,
-                 -(self.progressAngle/100.f)*M_PI-((-self.progressRotationAngle/100.f)*2.f+0.5)*M_PI,
-                 YES);
-    
-    CGPathRef strokedArc =
-    CGPathCreateCopyByStrokingPath(arc, NULL,
-                                   self.progressLineWidth,
-                                   (CGLineCap)self.progressCapType,
-                                   kCGLineJoinMiter,
-                                   10);
+    if (_isLine) {
+        CGMutablePathRef arc = CGPathCreateMutable();
+        CGRect myRect = CGRectMake(_margin, rect.size.height - self.progressLineWidth - _margin, (rect.size.width - _margin * 2) * self.value / 100 , self.progressLineWidth);
+        CGPathAddRoundedRect(arc, NULL, myRect, self.progressLineWidth / 2, self.progressLineWidth / 2);
+        CGContextAddPath(c, arc);
+        CGContextSetFillColorWithColor(c, self.progressColor.CGColor);
+        CGContextSetStrokeColorWithColor(c, self.progressStrokeColor.CGColor);
+        CGContextDrawPath(c, kCGPathFillStroke);
+        
+        CGPathRelease(arc);
+    } else {
+        CGMutablePathRef arc = CGPathCreateMutable();
+        CGPathAddArc(arc, NULL,
+                     center.x, center.y, radius,
+                     (self.progressAngle/100.f)*M_PI-((-self.progressRotationAngle/100.f)*2.f+0.5)*M_PI-(2.f*M_PI)*(self.progressAngle/100.f)*(100.f-100.f*self.value/self.maxValue)/100.f,
+                     -(self.progressAngle/100.f)*M_PI-((-self.progressRotationAngle/100.f)*2.f+0.5)*M_PI,
+                     YES);
+        
+        CGPathRef strokedArc =
+        CGPathCreateCopyByStrokingPath(arc, NULL,
+                                       self.progressLineWidth,
+                                       (CGLineCap)self.progressCapType,
+                                       kCGLineJoinMiter,
+                                       10);
+        
+        
+        CGContextAddPath(c, strokedArc);
+        CGContextSetFillColorWithColor(c, self.progressColor.CGColor);
+        CGContextSetStrokeColorWithColor(c, self.progressStrokeColor.CGColor);
+        CGContextDrawPath(c, kCGPathFillStroke);
+        
+        CGPathRelease(arc);
+        CGPathRelease(strokedArc);
 
-    
-    CGContextAddPath(c, strokedArc);
-    CGContextSetFillColorWithColor(c, self.progressColor.CGColor);
-    CGContextSetStrokeColorWithColor(c, self.progressStrokeColor.CGColor);
-    CGContextDrawPath(c, kCGPathFillStroke);
-    
-    CGPathRelease(arc);
-    CGPathRelease(strokedArc);
+    }
 }
 
 - (void)drawText:(CGRect)rect context:(CGContextRef)c{

@@ -63,6 +63,7 @@
     [self setDecimalPlaces:0];
     [self setShowUnitString:YES];
     [self setShowValueString:YES];
+    [self setIsLine:NO];
     [self setValueFontName:@"HelveticaNeue-Thin"];
     [self setTextOffset:CGPointMake(0, 0)];
     [self setUnitFontName:@"HelveticaNeue-Thin"];
@@ -74,6 +75,15 @@
 -(void)setShowValueString:(BOOL)showValueString{
   self.progressLayer.showValueString = showValueString;
   [self.layer setNeedsDisplay];
+}
+
+-(void)setIsLine:(BOOL)isLine{
+    self.progressLayer.isLine = isLine;
+    [self.layer setNeedsDisplay];
+}
+
+-(BOOL)isLine{
+    return self.progressLayer.isLine;
 }
 
 -(BOOL)showValueString{
