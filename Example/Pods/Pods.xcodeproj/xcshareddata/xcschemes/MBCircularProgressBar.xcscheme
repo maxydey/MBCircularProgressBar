@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "860A9179BCFD9F1C616D8653DB2B4F91"
+               BlueprintIdentifier = "EDF01DFEBC4074645C585421EDCDC2D5"
                BuildableName = "MBCircularProgressBar.framework"
                BlueprintName = "MBCircularProgressBar"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -29,6 +29,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "6003F589195388D20070C39A"
+            BuildableName = "MBCircularProgressBar_Example.app"
+            BlueprintName = "MBCircularProgressBar_Example"
+            ReferencedContainer = "container:../MBCircularProgressBar.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -42,15 +51,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "860A9179BCFD9F1C616D8653DB2B4F91"
-            BuildableName = "MBCircularProgressBar.framework"
-            BlueprintName = "MBCircularProgressBar"
-            ReferencedContainer = "container:Pods.xcodeproj">
+            BlueprintIdentifier = "6003F589195388D20070C39A"
+            BuildableName = "MBCircularProgressBar_Example.app"
+            BlueprintName = "MBCircularProgressBar_Example"
+            ReferencedContainer = "container:../MBCircularProgressBar.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -63,7 +73,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "860A9179BCFD9F1C616D8653DB2B4F91"
+            BlueprintIdentifier = "EDF01DFEBC4074645C585421EDCDC2D5"
             BuildableName = "MBCircularProgressBar.framework"
             BlueprintName = "MBCircularProgressBar"
             ReferencedContainer = "container:Pods.xcodeproj">

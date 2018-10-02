@@ -16,9 +16,12 @@ IB_DESIGNABLE
 @interface MBCircularProgressBarView : UIView
 
 /**
- * Should show value string
+ * linear view support
  */
 @property (nonatomic,assign) IBInspectable BOOL      isLine;
+@property (nonatomic,assign) IBInspectable BOOL      isVertical;
+@property (nonatomic,assign) IBInspectable BOOL      anotationLeft;
+@property (nonatomic,assign) IBInspectable NSString *anotationTitle;
 
 /**
  * Should show value string 

@@ -148,7 +148,13 @@ typedef NS_ENUM(NSInteger, MBCircularProgressBarAppearanceType) {
  * Should show value string
  */
 @property (nonatomic,assign)  BOOL      showValueString;
+/**
+ * linear view support
+ */
 @property (nonatomic,assign)  BOOL      isLine;
+@property (nonatomic,assign)  BOOL      isVertical;
+@property (nonatomic,assign)  BOOL      anotationLeft;
+@property (nonatomic,assign)  NSString *anotationTitle;
 
 
 /**

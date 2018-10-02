@@ -64,6 +64,9 @@
     [self setShowUnitString:YES];
     [self setShowValueString:YES];
     [self setIsLine:NO];
+    [self setIsVertical:NO];
+    [self setAnotationLeft:NO];
+    [self setAnotationTitle:@""];
     [self setValueFontName:@"HelveticaNeue-Thin"];
     [self setTextOffset:CGPointMake(0, 0)];
     [self setUnitFontName:@"HelveticaNeue-Thin"];
@@ -85,6 +88,35 @@
 -(BOOL)isLine{
     return self.progressLayer.isLine;
 }
+
+-(void)setIsVertical:(BOOL)isVertical{
+    self.progressLayer.isVertical = isVertical;
+    [self.layer setNeedsDisplay];
+}
+
+-(BOOL)isVertical{
+    return self.progressLayer.isVertical;
+}
+
+-(void)setAnotationLeft:(BOOL)anotationLeft{
+    self.progressLayer.anotationLeft = anotationLeft;
+    [self.layer setNeedsDisplay];
+}
+
+-(BOOL)anotationLeft{
+    return self.progressLayer.anotationLeft;
+}
+
+-(void)setAnotationTitle:(NSString *)anotationTitle{
+    self.progressLayer.anotationTitle = anotationTitle;
+    [self.layer setNeedsDisplay];
+}
+
+-(BOOL)anotationTitle{
+    return self.progressLayer.anotationTitle;
+}
+
+
 
 -(BOOL)showValueString{
   return self.progressLayer.showValueString;
