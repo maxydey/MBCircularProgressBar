@@ -315,8 +315,19 @@ static CGFloat _anotationOffset = 30;
     }
     
     CGSize percentSize = [text size];
-    CGPoint textCenter = [self textDrawingPointForSize:percentSize clippingRect:rect];
-    [text drawAtPoint:textCenter];
+    CGPoint textPoint = [self textDrawingPointForSize:percentSize clippingRect:rect];
+    [text drawAtPoint:textPoint];
+    //debug
+    //    CGRect r;
+    //    r.origin = textPoint;
+    //    r.size = percentSize;
+    //
+    //    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:r cornerRadius: 0];
+    //
+    //    CGContextAddPath(c, path.CGPath);
+    //    CGContextSetStrokeColorWithColor(c, self.progressStrokeColor.CGColor);
+    //    CGContextDrawPath(c, kCGPathFillStroke);
+    
 }
 
 - (CGPoint)textDrawingPointForSize:(CGSize)size clippingRect:(CGRect)rect {
@@ -324,13 +335,13 @@ static CGFloat _anotationOffset = 30;
     if(self.isLine && self.isVertical) {
         
         if(self.anotationLeft) {
-            textCenter.x = _margin + self.progressLineWidth + _anotationOffset + size.width/2;
+            textCenter.x = _margin + self.progressLineWidth + _anotationOffset ;
         } else {
-            textCenter.x = CGRectGetWidth(rect) -  (_margin + self.progressLineWidth + _anotationOffset + size.width/2);
+            textCenter.x = CGRectGetWidth(rect) -  (_margin + self.progressLineWidth + _anotationOffset + size.width);
         }
         CGFloat min = size.height;
         CGFloat max = CGRectGetHeight(rect) - size.height;
-        textCenter.y = MAX(min, MIN(rect.size.height - (rect.size.height - _margin * 2) * self.value / 100  - size.height/2, max));
+        textCenter.y = MAX(min, MIN(rect.size.height - (rect.size.height) * self.value / 100 - 10, max));
         
     } else {
         textCenter = CGPointMake(
